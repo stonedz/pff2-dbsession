@@ -102,7 +102,6 @@ class Pff2DbSession extends AModule implements IConfigurableModule, IBeforeSyste
     public function _destroy($id) {
         $res = $this->db->find('\pff\models\\'.$this->modelName,$id);
         $this->db->remove($res);
-
         try {
             $this->db->flush();
             return true;
