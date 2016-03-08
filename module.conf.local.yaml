@@ -1,0 +1,14 @@
+moduleConf:
+  # Model to store Session in the db, for example if "Session" is set then \pff\model\Session will be used
+  #
+  # The model specified must implements the following SQL structure
+  #
+  #CREATE TABLE IF NOT EXISTS `sessions` (
+  # `id` varchar(32) NOT NULL,
+  # `access` int(10) unsigned DEFAULT NULL,
+  # `data` text,
+  # PRIMARY KEY (`id`)
+  #) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  #
+  # And implenments getter/setters for id, access, data (for example getData(), setAccess())
+  sessionModel: Session
