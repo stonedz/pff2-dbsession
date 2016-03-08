@@ -81,7 +81,6 @@ class Pff2DbSession extends AModule implements IConfigurableModule, IBeforeSyste
 
     public function _write($id, $data) {
         $access = time();
-
         $res = $this->db->find('\pff\models\\'.$this->modelName,$id);
         if ($res) {
             $res->setData($data);
@@ -116,7 +115,6 @@ class Pff2DbSession extends AModule implements IConfigurableModule, IBeforeSyste
 
         /** @var QueryBuilder $qb */
         $qb = $this->db->createQueryBuilder();
-
         $qb->select('s')
             ->from($this->modelName, 's')
             ->where('s.access < :old')
@@ -128,7 +126,6 @@ class Pff2DbSession extends AModule implements IConfigurableModule, IBeforeSyste
             $count = 1;
             foreach($res as $r) {
                 $this->db->remove($r);
-
                 if(($count % 20) == 0 ){
                     try {
                         $this->db->flush();
