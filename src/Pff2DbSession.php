@@ -161,11 +161,11 @@ class Pff2DbSession extends AModule implements IConfigurableModule, IBeforeSyste
         /** @var QueryBuilder $qb */
         $qb = $this->db->createQueryBuilder();
         $qb->select('s')
-            ->from($this->modelName, 's')
+            ->from('\pff\models\\'.$this->modelName, 's')
             ->where('s.access < :old')
             ->setParameters(array('old' => $old));
 
-        $res = $qb->getQuery()->getArrayResult();
+        $res = $qb->getQuery()->getResult();
 
         if(!empty($res)) {
             $count = 1;
@@ -180,6 +180,12 @@ class Pff2DbSession extends AModule implements IConfigurableModule, IBeforeSyste
                     }
                 }
                 $count++;
+            }
+            try {
+                $this->db->flush();
+            }
+            catch(\Exception $e) {
+                return false;
             }
             return true;
         }
