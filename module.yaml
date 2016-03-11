@@ -2,3 +2,5 @@ name: pff2-dbsession
 version: "0.1"
 desc: Save PHP sessions in db
 class: Pff2DbSession
+requires:
+  - pff2-doctrine
